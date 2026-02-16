@@ -10,6 +10,8 @@ Before generating any code, Claude Code **MUST** first read and refer to the rel
 - /docs/data-fetching.md
 - /docs/auth.md
 - /docs/data-mutations.md
+- /docs/server-components.md
+- /docs/routing.md
 
 ## Commands
 
