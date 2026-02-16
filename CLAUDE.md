@@ -8,6 +8,8 @@ Before generating any code, Claude Code **MUST** first read and refer to the rel
 
 - /docs/ui.md
 - /docs/data-fetching.md
+- /docs/auth.md
+- /docs/data-mutations.md
 
 ## Commands
 
