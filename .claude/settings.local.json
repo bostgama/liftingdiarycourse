@@ -21,7 +21,11 @@
       "Bash(npm ls:*)",
       "Bash(if not exist \"C:\\\\Dev\\\\liftingdiarycourse\\\\src\\\\app\\\\dashboard\" mkdir \"C:\\\\Dev\\\\liftingdiarycourse\\\\src\\\\app\\\\dashboard\")",
       "Bash(npm run lint:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)",
+      "Bash(git merge:*)",
+      "Bash(git stash:*)"
     ]
   }
 }
