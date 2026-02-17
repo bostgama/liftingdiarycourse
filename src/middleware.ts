@@ -3,8 +3,12 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export default clerkMiddleware(async (auth, req: NextRequest) => {
-  const { userId } = await auth();
+  const { userId, redirectToSignIn } = await auth();
   const { pathname } = req.nextUrl;
+
+  if (!userId && pathname.startsWith("/dashboard")) {
+    return redirectToSignIn({ returnBackUrl: req.url });
+  }
 
   if (userId && pathname === "/") {
     return NextResponse.redirect(new URL("/dashboard", req.url));
