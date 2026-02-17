@@ -1,6 +1,15 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-export default clerkMiddleware();
+export default clerkMiddleware(async (auth, req: NextRequest) => {
+  const { userId } = await auth();
+  const { pathname } = req.nextUrl;
+
+  if (userId && pathname === "/") {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
+});
 
 export const config = {
   matcher: [
