@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { Dumbbell } from "lucide-react";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getWorkoutsByDate } from "@/data/workouts";
 import { DatePicker } from "./date-picker";
@@ -32,32 +33,38 @@ export default async function DashboardPage({
       ) : (
         <div className="space-y-4">
           {workouts.map((workout) => (
-            <Card key={workout.id}>
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-lg">{workout.name}</CardTitle>
-                {workout.completedAt ? (
-                  <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-medium text-primary-foreground">
-                    Completed
-                  </span>
-                ) : (
-                  <span className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
-                    In Progress
-                  </span>
-                )}
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-1 text-sm text-muted-foreground">
-                  {workout.exercises.map((exercise) => (
-                    <li key={exercise.name} className="flex justify-between">
-                      <span>{exercise.name}</span>
-                      <span>
-                        {exercise.sets} {exercise.sets === 1 ? "set" : "sets"}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+            <Link
+              key={workout.id}
+              href={`/dashboard/workout/${workout.id}`}
+              className="block"
+            >
+              <Card className="transition-colors hover:bg-muted/50">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <CardTitle className="text-lg">{workout.name}</CardTitle>
+                  {workout.completedAt ? (
+                    <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-medium text-primary-foreground">
+                      Completed
+                    </span>
+                  ) : (
+                    <span className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
+                      In Progress
+                    </span>
+                  )}
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-1 text-sm text-muted-foreground">
+                    {workout.exercises.map((exercise) => (
+                      <li key={exercise.name} className="flex justify-between">
+                        <span>{exercise.name}</span>
+                        <span>
+                          {exercise.sets} {exercise.sets === 1 ? "set" : "sets"}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       )}
